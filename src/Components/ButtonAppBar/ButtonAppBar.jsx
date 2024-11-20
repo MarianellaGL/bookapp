@@ -6,6 +6,8 @@ import { useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { ListMenu } from "../ListMenu/ListMenu";
 import { AppBarMenu } from "../AppBarMenu/AppBarMenu";
+import { LogoIcon } from "../LogoIcon/LogoIcon";
+import { Outlet } from "react-router-dom";
 
 export default function ButtonAppBar({ children }) {
   const [open, setOpen] = useState(true);
@@ -46,8 +48,8 @@ export default function ButtonAppBar({ children }) {
       >
         <Toolbar />
         <Box sx={{ overflow: "auto" }}>
+          <LogoIcon />
           <Divider />
-
           <List>
             {menu.map(({ id, titulo, path, icon }) => (
               <ListMenu key={id} titulo={titulo} path={path} icon={icon} />
@@ -56,6 +58,7 @@ export default function ButtonAppBar({ children }) {
         </Box>
       </Drawer>
       {children}
+      <Outlet />
     </Box>
   );
 }

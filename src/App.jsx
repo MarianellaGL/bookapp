@@ -1,13 +1,25 @@
 import "./App.css";
-import { BookTable } from "./Components/BookTable/BookTable";
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route,
+  RouterProvider,
+} from "react-router-dom";
 import ButtonAppBar from "./Components/ButtonAppBar/ButtonAppBar";
+import { BookTable } from "./Components/BookTable/BookTable";
 
 function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <Route element={<ButtonAppBar />}>
+        <Route path="/dashboard" element={<BookTable />} />
+      </Route>
+    )
+  );
+
   return (
     <>
-      <ButtonAppBar>
-        <BookTable />
-      </ButtonAppBar>
+      <RouterProvider router={router} />
     </>
   );
 }
