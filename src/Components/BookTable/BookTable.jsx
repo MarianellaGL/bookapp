@@ -1,7 +1,7 @@
 import {
   Box,
-  CircularProgress,
-  Tab,
+  Checkbox,
+  Chip,
   Table,
   TableBody,
   TableCell,
@@ -10,43 +10,33 @@ import {
   TableRow,
   Toolbar,
 } from "@mui/material";
-import { useEffect, useState } from "react";
-import { bookmockup } from "../../utils/BooksMockup";
 
-export const BookTable = () => {
-  const [books, setBooks] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      if (bookmockup.length > 0) {
-        setBooks(bookmockup);
-      }
-      setLoading(false);
-    }, 1000);
-    return () => clearTimeout(timeout);
-  }, []);
-
-  if (loading) {
-    return <CircularProgress />;
-  }
+export const BookTable = ({ books }) => {
+  console.log({ books });
   return (
-    <Box component="main" sx={{ flexGrow: 1, p: 3 }}>
+    <Box component="main" sx={{ flexGrow: 1, p: 3, alignSelf: "center" }}>
       <Toolbar />
       <div
         style={{
-          marginLeft: "180px",
           width: "100%",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
         }}
       >
-        <div style={{ display: "flex", flexDirection: "column" }}>
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+          }}
+        >
           <TableContainer>
             <Table>
               <TableHead>
                 <TableRow>
+                  <TableCell></TableCell>
                   <TableCell>Titulo</TableCell>
                   <TableCell>Autor</TableCell>
                   <TableCell>Categoría</TableCell>
@@ -55,12 +45,23 @@ export const BookTable = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {books.map((book) => (
+                {books?.map((book) => (
                   <TableRow key={book._id}>
+                    <TableCell>
+                      <Checkbox />
+                    </TableCell>
                     <TableCell>{book.titulo}</TableCell>
                     <TableCell>{book.autor}</TableCell>
                     <TableCell>{book.categoria}</TableCell>
-                    <TableCell>{book.estado}</TableCell>
+                    <TableCell>
+                      <Chip
+                        label={book?.estado}
+                        color={
+                          book?.estado === "Disponible" ? "success" : "default"
+                        }
+                        style={{ marginBottom: "10px" }}
+                      />
+                    </TableCell>
                     <TableCell>{book.updatedAt}</TableCell>
                   </TableRow>
                 ))}

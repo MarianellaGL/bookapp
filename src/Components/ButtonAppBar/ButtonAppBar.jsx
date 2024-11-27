@@ -1,34 +1,43 @@
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import "./style.css";
-import { Divider, Drawer, List } from "@mui/material";
+import {
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+} from "@mui/material";
 import { useState } from "react";
 import StarIcon from "@mui/icons-material/Star";
 import { ListMenu } from "../ListMenu/ListMenu";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import { AppBarMenu } from "../AppBarMenu/AppBarMenu";
 import { LogoIcon } from "../LogoIcon/LogoIcon";
-import { Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 
 export default function ButtonAppBar({ children }) {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(close);
+  const navigate = useNavigate();
 
   const menu = [
     {
       id: 1,
       titulo: "Buscá un libro",
-      path: "",
+      path: "/search",
       icon: <StarIcon />,
     },
     {
       id: 2,
       titulo: "Agregá un libro",
-      path: "",
+      path: "/add",
       icon: <StarIcon />,
     },
     {
       id: 3,
-      titulo: "listado libros",
-      path: "",
+      titulo: "Listado libros",
+      path: "/dashboard",
       icon: <StarIcon />,
     },
   ];
@@ -52,13 +61,31 @@ export default function ButtonAppBar({ children }) {
           <Divider />
           <List>
             {menu.map(({ id, titulo, path, icon }) => (
-              <ListMenu key={id} titulo={titulo} path={path} icon={icon} />
+              <>
+                <NavLink
+                  to={path}
+                  style={{ textDecoration: "none", color: "#4A4A4A" }}
+                >
+                  <ListMenu key={id} titulo={titulo} path={path} icon={icon} />
+                </NavLink>
+              </>
             ))}
+          </List>
+        </Box>
+        <Box sx={{ marginTop: "auto" }}>
+          <Divider />
+          <List>
+            <ListItem button onClick={() => navigate("/")}>
+              <ListItemIcon>
+                <ExitToAppIcon />
+              </ListItemIcon>
+              <ListItemText primary="Cerrar sesión" />
+            </ListItem>
           </List>
         </Box>
       </Drawer>
       {children}
-      <Outlet />
+      <Outlet context={{ hola: "hola" }} />
     </Box>
   );
 }
