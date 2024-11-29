@@ -12,6 +12,9 @@ import { AddBookPage } from "./Pages/Add/AddBookPage";
 import { SearchBookPage } from "./Pages/Search/SearchBookPage";
 import { BookPage } from "./Pages/BookPage/BookPage";
 
+export const baseURL = import.meta.env.VITE_BASE_URL;
+export const booksURL = import.meta.env.VITE_BOOKS;
+
 function App() {
   const router = createBrowserRouter(
     createRoutesFromElements(

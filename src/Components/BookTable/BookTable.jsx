@@ -10,9 +10,9 @@ import {
   TableRow,
   Toolbar,
 } from "@mui/material";
+import { Link } from "react-router-dom";
 
 export const BookTable = ({ books }) => {
-  console.log({ books });
   return (
     <Box component="main" sx={{ flexGrow: 1, p: 3, alignSelf: "center" }}>
       <Toolbar />
@@ -42,6 +42,7 @@ export const BookTable = ({ books }) => {
                   <TableCell>Categoría</TableCell>
                   <TableCell>Estado</TableCell>
                   <TableCell>Fecha de actualización</TableCell>
+                  <TableCell></TableCell>
                 </TableRow>
               </TableHead>
               <TableBody>
@@ -63,6 +64,11 @@ export const BookTable = ({ books }) => {
                       />
                     </TableCell>
                     <TableCell>{book.updatedAt}</TableCell>
+                    <TableCell>
+                      <Link to={`/libro/${book._id}`}>
+                        Ir al detalle del libro
+                      </Link>
+                    </TableCell>
                   </TableRow>
                 ))}
               </TableBody>

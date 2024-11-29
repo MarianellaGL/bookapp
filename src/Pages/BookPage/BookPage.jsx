@@ -1,16 +1,31 @@
 import { useParams } from "react-router-dom";
 import { CardBook } from "../../Components/CardBook/CardBook";
+import { Box, CircularProgress } from "@mui/material";
+import useFetch from "../../hooks/useFetch";
+import { baseURL, booksURL } from "../../App";
+import { getBooks } from "../../services/getBooks";
 
 export const BookPage = () => {
   const { id } = useParams();
+  const { data: book, loading } = useFetch(
+    `${baseURL}${booksURL}/${id}`,
+    getBooks
+  );
 
-  const mockBook = {
-    id: 1,
-    title: "Matar un ruiseñor",
-    status: "Disponible",
-    description:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-    image: "https://via.placeholder.com/150",
-  };
-  return <CardBook books={mockBook} />;
+  if (loading) {
+    return <CircularProgress />;
+  }
+
+  return (
+    <Box
+      sx={{
+        marginTop: "100px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+      }}
+    >
+      <CardBook book={book} textArea={false} />
+    </Box>
+  );
 };

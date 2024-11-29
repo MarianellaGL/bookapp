@@ -1,14 +1,13 @@
 import { Box, CircularProgress } from "@mui/material";
 import { BookTable } from "../../Components/BookTable/BookTable";
 import { GroupButtons } from "../../Components/GroupButtons/GroupButtons";
-import useFetch from "../../hooks/useFetch";
 import { getBooks } from "../../services/getBooks";
-
-const baseURL = import.meta.env.VITE_BASE_URL;
-const books = import.meta.env.VITE_BOOKS;
+import { useGetBooks } from "../../hooks/useGetBooks";
+import { baseURL, booksURL } from "../../App";
 
 export const Dashboard = () => {
-  const { data, loading } = useFetch(`${baseURL}${books}`, getBooks);
+  const { books, loading } = useGetBooks(`${baseURL}${booksURL}`, getBooks);
+  console.log(books.books);
 
   const buttons = [
     {
@@ -24,7 +23,7 @@ export const Dashboard = () => {
   ];
 
   if (loading) {
-    <CircularProgress />;
+    return <CircularProgress />;
   }
 
   return (
@@ -35,7 +34,7 @@ export const Dashboard = () => {
         gap: "12px",
       }}
     >
-      <BookTable books={data} />
+      <BookTable books={books} />
       <Box sx={{ width: "100%", display: "flex", justifyContent: "flex-end" }}>
         <GroupButtons buttons={buttons} />
       </Box>

@@ -1,5 +1,6 @@
 import { Card, CardContent, CardMedia, Chip, Typography } from "@mui/material";
 import { GroupButtons } from "../GroupButtons/GroupButtons";
+import BookEmpty from "../../assets/book-empty.jpg";
 
 export const CardBook = ({ book }) => {
   const buttons = [
@@ -16,7 +17,7 @@ export const CardBook = ({ book }) => {
     {
       id: 3,
       label: "Elimnar",
-      color: "default",
+      color: "error",
     },
   ];
 
@@ -24,10 +25,12 @@ export const CardBook = ({ book }) => {
     <Card style={{ maxWidth: "600px", width: "100%", alignSelf: "center" }}>
       <CardContent>
         <div style={{ display: "flex", gap: "12px" }}>
-          <Typography variant="h6">{book?.title}</Typography>
+          <Typography variant="h6">{book?.titulo}</Typography>
+          <Typography variant="subtitle1">-</Typography>
+          <Typography variant="h6">{book?.autor}</Typography>
           <Chip
-            label={book?.status}
-            color={book?.status === "Disponible" ? "success" : "default"}
+            label={book?.estado}
+            color={book?.estado === "Disponible" ? "success" : "default"}
             style={{ marginBottom: "10px" }}
           />
         </div>
@@ -37,8 +40,8 @@ export const CardBook = ({ book }) => {
         </Typography>
         <CardMedia
           component="img"
-          height="140"
-          image={book?.image}
+          height="300"
+          image={book?.image ? book?.image : BookEmpty}
           alt={book?.title}
           style={{ marginBottom: "10px" }}
         />

@@ -43,7 +43,7 @@ export default function ButtonAppBar({ children }) {
   ];
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex", justifyContent: "center" }}>
       {/**Esta parte de acá es el appbar, la barrita azul */}
       <AppBarMenu setOpen={setOpen} />
       {/** esto es el drawer con los otros elementos del menu */}
@@ -63,10 +63,11 @@ export default function ButtonAppBar({ children }) {
             {menu.map(({ id, titulo, path, icon }) => (
               <>
                 <NavLink
+                  key={id}
                   to={path}
                   style={{ textDecoration: "none", color: "#4A4A4A" }}
                 >
-                  <ListMenu key={id} titulo={titulo} path={path} icon={icon} />
+                  <ListMenu titulo={titulo} path={path} icon={icon} />
                 </NavLink>
               </>
             ))}
@@ -85,7 +86,7 @@ export default function ButtonAppBar({ children }) {
         </Box>
       </Drawer>
       {children}
-      <Outlet context={{ hola: "hola" }} />
+      <Outlet />
     </Box>
   );
 }
