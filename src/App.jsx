@@ -14,6 +14,8 @@ import { BookPage } from "./Pages/BookPage/BookPage";
 
 export const baseURL = import.meta.env.VITE_BASE_URL;
 export const booksURL = import.meta.env.VITE_BOOKS;
+export const filters = import.meta.env.VITE_GET_BOOK_FILTER;
+export const token = import.meta.env.VITE_TOKEN;
 
 function App() {
   const router = createBrowserRouter(

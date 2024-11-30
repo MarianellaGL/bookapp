@@ -7,8 +7,11 @@ import {
   Typography,
 } from "@mui/material";
 import StarIcon from "@mui/icons-material/Star";
+import { useForm } from "../../hooks/useForm";
 
 export const BookForm = () => {
+  const { bookForm, handleChange, handleSubmit } = useForm();
+
   return (
     <Card style={{ maxWidth: "800px", width: "100%", alignSelf: "center" }}>
       <Grid2
@@ -35,23 +38,45 @@ export const BookForm = () => {
           }}
         >
           <Grid2 item xs={3}>
-            <TextField fullWidth variant="outlined" label="Title" />
+            <TextField
+              fullWidth
+              variant="outlined"
+              label="Titulo"
+              name="titulo"
+              value={bookForm?.titulo}
+              onChange={(e) => handleChange(e)}
+            />
           </Grid2>
           <Grid2 item xs={3}>
-            <TextField fullWidth variant="outlined" label="Author" />
+            <TextField
+              fullWidth
+              variant="outlined"
+              label="Autor"
+              name="autor"
+              value={bookForm.autor}
+              onChange={(e) => handleChange(e)}
+            />
           </Grid2>
         </Grid2>
         <Grid2 item xs={3}>
           <TextField
             fullWidth
             variant="outlined"
-            label="Sinopsis"
-            multiline
-            rows={5}
+            label="categoria"
+            name="categoria"
+            value={bookForm.categoria}
+            onChange={(e) => handleChange(e)}
           />
         </Grid2>
         <Grid2 item xs={3}>
-          <TextField fullWidth variant="outlined" label="Status" />
+          <TextField
+            fullWidth
+            variant="outlined"
+            label="Estado"
+            name="estado"
+            value={bookForm.estado}
+            onChange={(e) => handleChange(e)}
+          />
         </Grid2>
         <Grid2
           item
@@ -63,7 +88,7 @@ export const BookForm = () => {
             marginTop: "20px",
           }}
         >
-          <Button variant="contained" color="primary">
+          <Button variant="contained" color="primary" onClick={handleSubmit}>
             AGREGAR
           </Button>
           <Button variant="contained" color="secondary">
