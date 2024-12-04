@@ -47,7 +47,6 @@ const BookToolbar = ({
             sx={{ minWidth: "150px" }}
           >
             <MenuItem value="">Filtrar por...</MenuItem>
-            <MenuItem value="titulo">Título</MenuItem>
             <MenuItem value="autor">Autor</MenuItem>
             <MenuItem value="categoria">Categoría</MenuItem>
           </Select>

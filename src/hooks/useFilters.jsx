@@ -13,6 +13,7 @@ export const useFilters = () => {
   const { data, isLoading, error } = useSelector(
     (state) => state.filteredBooks
   );
+  console.log(data);
   const [searchQuery, setSearchQuery] = useState("");
   const [filterType, setFilterType] = useState("");
   const buttons = [
@@ -36,7 +37,7 @@ export const useFilters = () => {
     if (data && !isLoading && !error) {
       dispatch(setBooks(data));
     }
-  }, []);
+  }, [data, isLoading]);
 
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);

@@ -13,7 +13,6 @@ export const getFilteredBooks = createAsyncThunk(
           [paramFilter]: payload.searchQuery,
         },
       });
-      console.log({ response });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue({ error: error.message });
