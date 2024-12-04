@@ -2,6 +2,7 @@ import { Box, TextField, Button, Typography, Paper } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ButtonMolecule from "../../DS/Molecules/ButtonMolecule";
 
 const LoginContainer = styled(Box)(({ theme }) => ({
   display: "flex",
@@ -70,9 +71,12 @@ export const Login = () => {
           </Typography>
         )}
         <Box mt={3}>
-          <StyledButton variant="contained" fullWidth onClick={handleLogin}>
+          {/*<StyledButton variant="contained" fullWidth onClick={handleLogin}>
             Ingresar
-          </StyledButton>
+          </StyledButton>*/}
+          <ButtonMolecule >
+            Ingresar
+          </ButtonMolecule>
         </Box>
       </LoginBox>
     </LoginContainer>
